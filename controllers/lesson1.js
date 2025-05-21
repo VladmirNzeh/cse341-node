@@ -1,12 +1,10 @@
+// controllers/lesson1.js
+const { getdb } = require('../db/connect');
+
 const emilyRoute = (req, res) => {
-  res.send('Emily Birch');
-}
+  const db = getdb();
+  // db.collection('yourCollection').find()...
+  res.send('Hello, Emmanuel!');
+};
 
-const hannahRoute = (req, res) => {
-  res.send('Hannah Birch');
-}
-
-module.exports = {
-    emilyRoute,
-    hannahRoute
-    };
+module.exports = { emilyRoute };

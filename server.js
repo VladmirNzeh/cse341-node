@@ -1,9 +1,15 @@
+// server.js
+require('dotenv').config();
 const express = require('express');
 const app = express();
+const { connect } = require('./db/connect'); // 👈 just connect once
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-app.use('/', require('./routes/index.js'));
+connect(); // connect to MongoDB on startup
 
-app.listen(process.env.port || port);
-  console.log('Web Server is listening at port ' + (process.env.port || port));
+app.use('/', require('./routes/index'));
+
+app.listen(port, () => {
+  console.log(`🚀 Server listening on port ${port}`);
+});
