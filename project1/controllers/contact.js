@@ -2,7 +2,7 @@ const mongodb = require('../db/connect');
 
 const getAllContacts = async (req, res) => {
     try {
-        const result = await mongodb.getDb().db().collection('contacts').find();
+        const result = await mongodb.getDb().db('mongodbVSCodePlaygro').collection('contacts').find();
         result.toArray().then((contacts) => {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json(contacts);
@@ -15,7 +15,7 @@ const getAllContacts = async (req, res) => {
 const getSingleContact = async (req, res) => {
     try {
         const contactId = req.params.id;
-        const result = await mongodb.getDb().db().collection('contacts').findOne({_id:
+        const result = await mongodb.getDb().db('mongodbVSCodePlaygro').collection('contacts').findOne({_id:
             new require('mongodb').objectId(contactId)});
 
             if (!result) {
