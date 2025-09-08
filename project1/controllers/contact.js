@@ -24,7 +24,7 @@ const getSingleContact = async (req, res) => {
       .getDb()
       .db('mongodbVSCodePlaygro')
       .collection('contacts')
-      .findOne({ _id: new ObjectId(contactId) });
+      .findOne({ _id: new (contactId) });
 
     if (!result) {
       return res.status(404).json({ message: 'Contact not found' });
