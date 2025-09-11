@@ -1,43 +1,33 @@
-const mongodb = require('../db/connect');
-const { ObjectId } = require('mongodb');
-
-const getAllContacts = async (req, res) => {
-  try {
-    const result = await mongodb
-      .getDb()
-      .db('mongodbVSCodePlaygro')
-      .collection('contacts')
-      .find()
-      .toArray();
-
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(result);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+exports.findAll = async (req, res) => {
+  const db = req.app.locals.db;
+  const contacts = await db.collection('contacts').find().toArray();
+  res.send(contacts);
 };
 
-const getSingleContact = async (req, res) => {
-  try {
-    const contactId = req.params.id;
-    const result = await mongodb
-      .getDb()
-      .db('mongodbVSCodePlaygro')
-      .collection('contacts')
-      .findOne({ _id: new (contactId) });
-
-    if (!result) {
-      return res.status(404).json({ message: 'Contact not found' });
-    }
-
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(result);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+exports.findOne = async (req, res) => {
+  const db = req.app.locals.db;
+  const contact = await db.collection('contacts').findOne({ email: req.params.email });
+  contact ? res.send(contact) : res.status(404).send({ message: 'Not found' });
 };
 
-module.exports = {
-  getAllContacts,
-  getSingleContact,
+exports.create = async (req, res) => {
+  const db = req.app.locals.db;
+  const result = await db.collection('contacts').insertOne(req.body);
+  res.status(201).send(result.ops[0]);
+};
+
+exports.update = async (req, res) => {
+  const db = req.app.locals.db;
+  const result = await db.collection('contacts').findOneAndUpdate(
+    { email: req.params.email },
+    { $set: req.body },
+    { returnDocument: 'after' }
+  );
+  result.value ? res.send(result.value) : res.status(404).send({ message: 'Not found' });
+};
+
+exports.delete = async (req, res) => {
+  const db = req.app.locals.db;
+  const result = await db.collection('contacts').deleteOne({ email: req.params.email });
+  result.deletedCount ? res.status(204).send() : res.status(404).send({ message: 'Not found' });
 };

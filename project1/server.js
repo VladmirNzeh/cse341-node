@@ -1,26 +1,21 @@
+require('dotenv').config();
 const express = require('express');
-const bodyParser = require('body-parser');
-const mongodb = require('./db/connect');
-const contactsRoutes = require('./routes/contact'); 
+const { MongoClient } = require('mongodb');
+const routes = require('./routes');
+const swaggerUi = require('swagger-ui-express');
+const swaggerFile = require('./swagger-output.json');
 
-const port = process.env.PORT || 8080;
 const app = express();
+const PORT = process.env.PORT || 8080;
 
-app.use(bodyParser.json())
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*'); 
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    next();  
-});
-app.use('/contacts', contactsRoutes);
+app.use(express.json());
+app.use('/', routes);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
-mongodb.initDb((err) => {
-    if (err) {
-        console.error(err);
-    } else {
-        app.listen(port, () => {
-            console.log(`Server running at http://localhost: ${port}`);
-        });
-    }
-});
+MongoClient.connect(process.env.MONGO_URI)
+  .then(client => {
+    const db = client.db('test');
+    app.locals.db = db;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  })
+  .catch(err => console.error(err));
