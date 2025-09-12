@@ -43,9 +43,9 @@ routes.get('/:email', contact.findOne);
  *           schema:
  *             type: object
  *             properties:
- *               firstName:
+ *               firstname:
  *                 type: string
- *               lastName:
+ *               lastname:
  *                 type: string
  *               email:
  *                 type: string
