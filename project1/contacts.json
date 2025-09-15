@@ -1,37 +1,23 @@
 [
   {
-    "firstName": "Ada",
-    "lastName": "Obi",
-    "email": "ada.obi@example.com",
-    "favoriteColor": "Blue",
-    "birthday": "1990-05-12"
-  },
-  {
-    "firstName": "John",
-    "lastName": "Doe",
-    "email": "john.doe@example.com",
+    "firstName": "Sarah",
+    "lastName": "Birch",
+    "email": "amazingwoman@test.com",
     "favoriteColor": "Green",
-    "birthday": "1985-11-23"
+    "birthday": "12/12/20"
   },
   {
-    "firstName": "Fatima",
-    "lastName": "Ahmed",
-    "email": "fatima.ahmed@example.com",
+    "firstName": "Jimmy",
+    "lastName": "Carter",
+    "email": "jCarter@test.com",
     "favoriteColor": "Purple",
-    "birthday": "1992-03-08"
+    "birthday": "07/12/10"
   },
   {
-    "firstName": "Chinedu",
-    "lastName": "Okeke",
-    "email": "chinedu.okeke@example.com",
-    "favoriteColor": "Red",
-    "birthday": "1988-07-19"
-  },
-  {
-    "firstName": "Grace",
-    "lastName": "Williams",
-    "email": "grace.williams@example.com",
+    "firstName": "Cassandra",
+    "lastName": "Anderson",
+    "email": "AndersonC@test.com",
     "favoriteColor": "Yellow",
-    "birthday": "1995-12-01"
+    "birthday": "02/22/95"
   }
 ]

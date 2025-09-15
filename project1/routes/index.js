@@ -1,12 +1,10 @@
-const routes = require('express').Router();
-const contactRoutes = require('./contact');
+const express = require('express');
+const router = express.Router();
 
-//  Mount the contact routes at /contacts
-routes.use('/contacts', contactRoutes);
+router.use('/', require('./swagger')); 
+router.get('/', (req, res) => {
+  // Swagger.tags = [contacts]
+  res.send('Hello world!')});
 
-//  Optional: Redirect root to Swagger UI
-routes.get('/', (req, res) => {
-  res.redirect('/api-docs');
-});
-
-module.exports = routes;
+router.use('/contacts', require('./contacts'));
+module.exports = router;

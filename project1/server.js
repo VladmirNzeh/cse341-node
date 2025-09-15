@@ -1,26 +1,27 @@
-require('dotenv').config();
 const express = require('express');
-const { MongoClient } = require('mongodb');
-const routes = require('./routes');
-const swaggerUi = require('swagger-ui-express');
-const swaggerFile = require('./swagger-output.json');
+const bodyParser = require('body-parser');
+const mongodb = require('./db/connect');
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const port = process.env.PORT || 8080;
 
-app.use(express.json());
 
-//  Mount all routes
-app.use('/', routes);
-
-//  Serve Swagger UI
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
-
-//  Connect to MongoDB and start server
-MongoClient.connect(process.env.MONGO_URI)
-  .then(client => {
-    const db = client.db('project1'); // Make sure 'test' matches your actual database name
-    app.locals.db = db;
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app
+  .use(bodyParser.json())
+  .use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    next();
   })
-  .catch(err => console.error('MongoDB connection failed:', err));
+  .use('/', require('./routes'));
+
+mongodb.initDb((err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    app.listen(port, () => {
+      console.log(`Listening on port: ${port}`);
+    });
+  }
+});
