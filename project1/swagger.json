@@ -5,7 +5,7 @@
     "description": "API to manage a list of contacts",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "test-db-kdao.onrender.com",
   "basePath": "/",
   "schemes": [
     "http",
