@@ -19,5 +19,19 @@
     "email": "AndersonC@test.com",
     "favoriteColor": "Yellow",
     "birthday": "02/22/95"
+  },
+  {
+    "firstName": "Bob",
+    "lastName": "Dylan",
+    "email": "Bobdylan@test.com",
+    "favoriteColor": "Blue",
+    "birthday": "05/14/45"
+  },
+  {
+    "firstName": "Alice",
+    "lastName": "Cooper",
+    "email": "alicecpr@test.com",
+    "favoriteColor": "Black",
+    "birthday": "02/04/48"
   }
 ]
