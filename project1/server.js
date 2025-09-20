@@ -10,34 +10,19 @@ app
   .use(bodyParser.json())
   .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     next();
   })
   .use('/', require('./routes'));
 
-mongodb.initDb(async (err) => {
+process.on('uncaughtException', (err, origin) => {
+  console.log(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin}`);
+});
+
+mongodb.initDb((err) => {
   if (err) {
     console.log(err);
   } else {
-    const db = mongodb.getDb().db(); // get active DB
-    const contactsCollection = db.collection('contacts');
-    const count = await contactsCollection.countDocuments();
-
-    if (count === 0) {
-      try {
-        const contacts = JSON.parse(fs.readFileSync('./contacts.json', 'utf8'));
-        const result = await contactsCollection.insertMany(contacts);
-        console.log(`${result.insertedCount} contacts seeded into MongoDB.`);
-      } catch (seedErr) {
-        console.error('Seeding failed:', seedErr);
-      }
-    } else {
-      console.log(`Contacts collection already has ${count} documents.`);
-    }
-
-    app.listen(port, () => {
-      console.log(`Listening on port: ${port}`);
-    });
-  }
+    app.listen(port);
+      console.log(`Connected to DB and listening on port ${port}`);
+  } 
 });
