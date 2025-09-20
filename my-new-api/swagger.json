@@ -5,7 +5,7 @@
     "description": "API to manage a list of products",
     "version": "1.0.0"
   },
-  "host": "https://test-db-kdao.onrender.com",
+  "host": "test-db-kdao.onrender.com",
   "basePath": "/api",
   "schemes": [
     "https"
