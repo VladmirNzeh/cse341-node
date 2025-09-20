@@ -4,7 +4,8 @@ const doc= {
         title: 'Products API',
         description: 'API to manage a list of products'
     },
-    host: 'localhost:3000',
+    host: process.env.SWAGGER_HOST || 'localhost:3000',
+    basePath: process.env.SWAGGER_BASEPATH || '/api',
     schemes: ['http', 'https'],
 };
 

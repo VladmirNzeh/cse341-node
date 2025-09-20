@@ -4,9 +4,9 @@ const saveProduct = (req, res, next) => {
     const validationRule = {
         productName: 'required|string',
         brand: 'required|string',
-        price: 'required|string',
+        price: 'required|numeric',
         category: 'required|string',
-        releaseDate: 'required|string'
+        releaseDate: 'required|date'
     };
     validator(req.body, validationRule, {}, (err, status) => {
         if (!status) {

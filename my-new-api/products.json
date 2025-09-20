@@ -33,5 +33,19 @@
     "price": 39.95,
     "category": "Home Decor",
     "releaseDate": "2020-01-05"
+  },
+  {
+    "productName": "Smartphone",
+    "brand": "Samsung",
+    "price": 699.00,
+    "category": "Electronics",
+    "releaseDate": "2024-02-20"
+  },
+  {
+    "productName": "Yoga Mat",
+    "brand": "Manduka",
+    "price": 45.00,
+    "category": "Fitness",
+    "releaseDate": "2023-09-12"
   }
 ]
