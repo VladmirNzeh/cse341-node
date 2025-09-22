@@ -1,30 +1,17 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Products API",
-    "description": "API to manage a list of products",
+    "title": "My API",
+    "description": "Description",
     "version": "1.0.0"
   },
-  "host": "test-db-kdao.onrender.com",
+  "host": "cse341-node-ms90.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
   ],
   "paths": {
-    "/": {
-      "get": {
-        "tags": [
-          "Hello World"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api-docs": {
+    "/login": {
       "get": {
         "description": "",
         "responses": {
@@ -34,11 +21,18 @@
         }
       }
     },
-    "/products/": {
+    "/logout": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/foods/": {
       "post": {
-        "tags": [
-          "Products"
-        ],
         "description": "",
         "parameters": [
           {
@@ -50,22 +44,28 @@
                 "name": {
                   "example": "any"
                 },
-                "price": {
+                "description": {
                   "example": "any"
                 },
                 "category": {
                   "example": "any"
                 },
-                "sku": {
+                "nutrients": {
                   "example": "any"
                 },
-                "description": {
+                "serving_size": {
                   "example": "any"
                 },
-                "inStock": {
+                "is_vegan": {
                   "example": "any"
                 },
-                "quantity": {
+                "is_vegetarian": {
+                  "example": "any"
+                },
+                "is_gluten_free": {
+                  "example": "any"
+                },
+                "common_allergens": {
                   "example": "any"
                 }
               }
@@ -73,14 +73,11 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
           },
-          "400": {
-            "description": "Bad Request"
-          },
-          "412": {
-            "description": "Precondition Failed"
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
             "description": "Internal Server Error"
@@ -88,10 +85,10 @@
         }
       },
       "get": {
-        "tags": [
-          "Products"
-        ],
         "description": "",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -102,37 +99,12 @@
         }
       }
     },
-    "/products/{id}": {
+    "/foods/{id}": {
       "get": {
-        "tags": [
-          "Products"
-        ],
         "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+        "produces": [
+          "application/json"
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Products"
-        ],
-        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -148,11 +120,63 @@
           "400": {
             "description": "Bad Request"
           },
-          "404": {
-            "description": "Not Found"
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           },
-          "412": {
-            "description": "Precondition Failed"
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "category": {
+                  "example": "any"
+                },
+                "nutrients": {
+                  "example": "any"
+                },
+                "serving_size": {
+                  "example": "any"
+                },
+                "is_vegan": {
+                  "example": "any"
+                },
+                "is_vegetarian": {
+                  "example": "any"
+                },
+                "is_gluten_free": {
+                  "example": "any"
+                },
+                "common_allergens": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
             "description": "Internal Server Error"
@@ -160,9 +184,6 @@
         }
       },
       "delete": {
-        "tags": [
-          "Products"
-        ],
         "description": "",
         "parameters": [
           {
@@ -173,11 +194,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
+          "204": {
+            "description": "No Content"
           },
           "500": {
             "description": "Internal Server Error"
