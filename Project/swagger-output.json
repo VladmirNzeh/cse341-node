@@ -5,7 +5,7 @@
     "description": "API Documentation",
     "version": "1.0.0"
   },
-  "host": "cse341-node-ms90.onrender.com",
+  "host": "test-tys1.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"

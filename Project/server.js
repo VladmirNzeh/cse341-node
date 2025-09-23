@@ -20,7 +20,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app
   .use(cors({
-    origin: ['https://cse341-node-ms90.onrender.com', 'http://localhost:8080'],
+    origin: ['https://test-tys1.onrender.com', 'http://localhost:8080'],
     methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   }))
