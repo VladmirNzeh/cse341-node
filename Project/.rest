@@ -3,7 +3,7 @@
 GET http://localhost:3000/users
 
 ### Get a single contact by ID
-GET http://localhost:3000/users/688575940ffbf66b7eb4ea73
+GET http://localhost:3000/users/
 
 
 ### Create a new user
@@ -20,13 +20,13 @@ Content-Type: application/json
 }
 
 ### Update a contact
-PUT http://localhost:3000/contacts/687fef38db0fe4043b9b39f9
+PUT http://localhost:3000/contacts/
 Content-Type: application/json
 
 {
-    "firstName": "schrupa",
-    "lastName": "santorini",
-    "email": "chrupasanti@gmail.com",
-    "favoriteColor": "Cyan",
-    "birthday": "22/07/1987"
+    "firstName": "",
+    "lastName": "",
+    "email": "",
+    "favoriteColor": "",
+    "birthday": ""
 }
