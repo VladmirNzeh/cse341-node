@@ -79,16 +79,16 @@ app.get('/github/callback',
 });
 
 
-app.get('/', (req, res) => {
-  if (req.isAuthenticated()) {
-    // `req.user` is now correctly populated by Passport's session middleware.
-    // We can confidently access its properties.
-    const userDisplayName = req.user.displayName || req.user.username || 'Anonymous User';
-    res.send(`Logged in as ${userDisplayName}`);
-  } else {
-    res.send('Logged out');
-  }
-});
+// app.get('/', (req, res) => {
+//   if (req.isAuthenticated()) {
+//     // `req.user` is now correctly populated by Passport's session middleware.
+//     // We can confidently access its properties.
+//     const userDisplayName = req.user.displayName || req.user.username || 'Anonymous User';
+//     res.send(`Logged in as ${userDisplayName}`);
+//   } else {
+//     res.send('Logged out');
+//   }
+// });
 
 
 process.on('uncaughtException', (err, origin) => {

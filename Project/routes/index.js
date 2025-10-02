@@ -8,9 +8,10 @@ const passport = require('passport');
 router.use('/users', users);
 router.use('/foods', foods);
 
-// router.get('/', (req,res) => {
-//     res.send('Welcome to the API!');
-// })
+router.get('/', (req,res) => {
+    res.send('Welcome to the API!');
+ });
+
 router.get('/login', passport.authenticate('github'), (req, res) => {} );
 
 router.get('/logout', function(req, res, next) {

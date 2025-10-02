@@ -1,13 +1,13 @@
 // LOCAL HOST - Development
 ### Get all contacts
-GET http://localhost:8080/users
+GET http://localhost:3000/users
 
 ### Get a single contact by ID
-GET http://localhost:8080/users/688575940ffbf66b7eb4ea73
+GET http://localhost:3000/users/688575940ffbf66b7eb4ea73
 
 
 ### Create a new user
-POST http://localhost:8080/users
+POST http://localhost:3000/users
 Content-Type: application/json
 
 {
@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 ### Update a contact
-PUT http://localhost:8080/contacts/687fef38db0fe4043b9b39f9
+PUT http://localhost:3000/contacts/687fef38db0fe4043b9b39f9
 Content-Type: application/json
 
 {
